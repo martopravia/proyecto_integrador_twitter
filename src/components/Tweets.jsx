@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const Home = () => {
+const Tweets = () => {
   const [tweets, setTweets] = useState([]);
   useEffect(() => {
     const getTweets = async () => {
@@ -20,4 +20,4 @@ const Home = () => {
   return <div>Home</div>;
 };
 
-export default Home;
+export default Tweets;
