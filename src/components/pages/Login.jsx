@@ -1,14 +1,14 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setLogin } from "../../redux/loginSlice";
+import { useDispatch } from "react-redux";
+import { setLogin } from "../../redux/userSlice";
+import { Link, useNavigate } from "react-router";
 
 const Login = () => {
   const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { token } = useSelector((state) => state.login.token);
-  const userLogged = useSelector((state) => state.login.username);
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -17,37 +17,37 @@ const Login = () => {
       url: "http://localhost:3000/tokens",
       data: { username, password },
     });
-    const data = await response.data;
-    console.log(data);
-    dispatch(setLogin({ token: data, username }));
+    const { data } = response;
+    if (data.token) {
+      console.log(data);
+      dispatch(setLogin({ token: data.token, username, userId: data.userId }));
+      navigate("/");
+    }
   };
   return (
     <>
       <form onSubmit={handleLogin}>
-        <label htmlFor="">
-          <input
-            type="text"
-            placeholder="Username..."
-            name="username"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </label>
-        <label htmlFor="">
-          <input
-            type="password"
-            placeholder="Password..."
-            name="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
+        <label htmlFor="username">Ingresar usuario</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <label htmlFor="password">Ingresar contraseña</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <button type="submit">Login</button>
       </form>
-      <div>usuario: {userLogged}</div>
-      <div>token: {token}</div>
+      <p>
+        <Link to={"/register"}>Sign up</Link>
+      </p>
     </>
   );
 };

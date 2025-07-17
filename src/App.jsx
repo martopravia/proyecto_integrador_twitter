@@ -5,13 +5,19 @@ import Users from "./components/Users";
 import Tweets from "./components/Tweets";
 import Login from "./components/pages/Login";
 
+import Private from "./components/Private";
+import Register from "./components/pages/Register";
+
 function App() {
   return (
     <>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Tweets />} />
-        <Route path="/:username" element={<Users />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<Private />}>
+          <Route path="/" element={<Tweets />} />
+          <Route path="/:username" element={<Users />} />
+        </Route>
       </Routes>
     </>
   );
