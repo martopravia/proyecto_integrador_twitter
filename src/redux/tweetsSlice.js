@@ -10,11 +10,20 @@ const tweetsSlice = createSlice({
     deleteTweet: (state, action) => {
       return state.filter((tweet) => tweet._id !== action.payload._id);
     },
-    // likeTweet: (state, action) => {
-    //   return state.filter((tweet) => tweet._id !== action.payload._id);
-    // },
+    toggleLikeTweet: (state, action) => {
+      const { tweetId, loggedUser } = action.payload;
+
+      const clickedTweet = state.find((tweet) => tweet._id === tweetId);
+      let clickedTweetLikes = clickedTweet.likes;
+      const isLiked = clickedTweetLikes.includes(loggedUser);
+      isLiked
+        ? (clickedTweet.likes = clickedTweetLikes.filter(
+            (userId) => userId !== loggedUser
+          ))
+        : clickedTweetLikes.push(loggedUser);
+    },
   },
 });
 
-export const { setTweets, deleteTweet } = tweetsSlice.actions;
+export const { setTweets, deleteTweet, toggleLikeTweet } = tweetsSlice.actions;
 export default tweetsSlice.reducer;

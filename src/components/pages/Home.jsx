@@ -10,6 +10,7 @@ const Home = () => {
   const isLocalImage = !userImg.includes("http");
   const dispatch = useDispatch();
   const [newTweetText, setNewTweetText] = useState("");
+  const [submittedTweets, setSubmittedTweets] = useState(0);
 
   useEffect(() => {
     const getTweets = async () => {
@@ -23,7 +24,7 @@ const Home = () => {
       dispatch(setTweets(response.data));
     };
     getTweets();
-  }, [, handleSubmit]);
+  }, [submittedTweets]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -42,6 +43,7 @@ const Home = () => {
     };
     addTweet();
     setNewTweetText("");
+    setSubmittedTweets(submittedTweets + 1);
   }
 
   return (
@@ -76,6 +78,7 @@ const Home = () => {
               profileImg={tweet.user.profileImg}
               createdAt={tweet.createdAt}
               likes={tweet.likes}
+              tweetId={tweet._id}
             />
           </li>
         ))}
