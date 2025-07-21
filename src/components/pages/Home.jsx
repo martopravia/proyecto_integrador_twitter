@@ -7,6 +7,7 @@ import OneTweet from "../OneTweet";
 const Home = () => {
   const latestTweets = useSelector((state) => state.tweets);
   const { token, userId, userImg } = useSelector((state) => state.user);
+  const isLocalImage = !userImg.includes("http");
   const dispatch = useDispatch();
   const [newTweetText, setNewTweetText] = useState("");
 
@@ -46,7 +47,10 @@ const Home = () => {
   return (
     <div>
       <h3>Home</h3>
-      <img src={userImg} alt="profile image" />
+      <img
+        src={isLocalImage ? `http://localhost:3000/img/${userImg}` : userImg}
+        alt="profile image"
+      />
 
       <form action="submit" onSubmit={handleSubmit}>
         <label htmlFor="newTweet"></label>

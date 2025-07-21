@@ -12,10 +12,19 @@ const OneTweet = ({
 }) => {
   const loggedUser = useSelector((state) => state.user.userId);
   const isLiked = likes.includes(loggedUser);
+  const localImage = profileImg.indexOf("https://");
 
   return (
     <div>
-      <img src={profileImg} alt="profile image" />
+      {/* <img src={profileImg} alt="profile image" /> */}
+      <img
+        src={
+          localImage !== -1
+            ? profileImg
+            : `http://localhost:3000/img/${profileImg}`
+        }
+        alt="profile image"
+      />
       <h5>
         {firstname} {lastname} @{username} ·{" "}
         {new Date(createdAt).toLocaleDateString()}
