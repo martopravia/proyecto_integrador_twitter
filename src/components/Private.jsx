@@ -1,13 +1,23 @@
 import React from "react";
-import { Outlet } from "react-router";
+import { useSelector } from "react-redux";
+import { Navigate, Outlet } from "react-router";
 
 const Private = () => {
-  console.log("entre a este comp");
+  let token = "";
+  try {
+    token = useSelector((state) => state.user.token);
+  } catch (error) {
+    console.log(error);
+  }
+
+  if (!token) {
+    return <Navigate to="login" />;
+  }
   return (
     <div>
-      <h1>Titulo</h1>
-      <Outlet />
-      <footer>Footer</footer>
+      <div>
+        <Outlet />
+      </div>
     </div>
   );
 };

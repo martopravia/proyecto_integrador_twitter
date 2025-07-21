@@ -19,8 +19,14 @@ const Login = () => {
     });
     const { data } = response;
     if (data.token) {
-      console.log(data);
-      dispatch(setLogin({ token: data.token, username, userId: data.userId }));
+      dispatch(
+        setLogin({
+          token: data.token,
+          username,
+          userId: data.userId,
+          userImg: data.userImg,
+        })
+      );
       navigate("/");
     }
   };

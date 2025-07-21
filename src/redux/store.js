@@ -1,12 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
-import taskReducer from "./taskSlice";
 import userReducer from "./userSlice";
+import tweetsReducer from "./tweetsSlice";
 
 const store = configureStore({
   reducer: {
-    tasks: taskReducer,
     user: userReducer,
+    tweets: tweetsReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export default store;
