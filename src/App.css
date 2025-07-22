@@ -1,0 +1,34 @@
+/* body {
+  background-color: #171f2e;
+} */
+
+.container-home-background {
+  background-color: #171f2e;
+  min-height: 100vh;
+  min-width: 100vw;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.username-date-color {
+  color: #67758d !important;
+  opacity: 1;
+}
+
+textarea::placeholder {
+  color: #67758d !important;
+  opacity: 1;
+}
+
+::placeholder {
+  color: white !important;
+  opacity: 0.6;
+}
+
+textarea {
+  border: none !important;
+  background-color: #171f2e !important;
+  color: white !important;
+  resize: none;
+}

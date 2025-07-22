@@ -39,9 +39,7 @@ const Register = () => {
   return (
     <>
       <form onSubmit={handleRegister}>
-        <label htmlFor="firstname" hidden>
-          firstname
-        </label>
+        <label htmlFor="firstname">firstname</label>
         <input
           type="text"
           name="firstname"
@@ -50,9 +48,7 @@ const Register = () => {
           value={firstname}
           onChange={(e) => setFirstName(e.target.value)}
         />
-        <label htmlFor="lastname" hidden>
-          lastname
-        </label>
+        <label htmlFor="lastname">lastname</label>
         <input
           type="text"
           name="lastname"
@@ -61,9 +57,7 @@ const Register = () => {
           value={lastname}
           onChange={(e) => setLastName(e.target.value)}
         />{" "}
-        <label htmlFor="email" hidden>
-          email
-        </label>
+        <label htmlFor="email">email</label>
         <input
           type="email"
           name="email"
@@ -72,9 +66,7 @@ const Register = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />{" "}
-        <label htmlFor="username" hidden>
-          username
-        </label>
+        <label htmlFor="username">username</label>
         <input
           type="text"
           name="username"
@@ -84,7 +76,7 @@ const Register = () => {
           onChange={(e) => setUserName(e.target.value)}
         />{" "}
         <div className="mb-3">
-          <label htmlFor="profilePicture" className="form-label" hidden>
+          <label htmlFor="profilePicture" className="form-label">
             Profile Picture
           </label>
           <input
@@ -95,9 +87,7 @@ const Register = () => {
             onChange={(e) => setProfileImg(e.target.files[0])}
           />
         </div>
-        <label htmlFor="password" hidden>
-          Password
-        </label>
+        <label htmlFor="password">Password</label>
         <input
           type="password"
           name="password"

@@ -12,8 +12,8 @@ const Home = () => {
   const dispatch = useDispatch();
   const [newTweetText, setNewTweetText] = useState("");
   const [submittedTweets, setSubmittedTweets] = useState(0);
-
   const username = useSelector((state) => state.user.username);
+
   useEffect(() => {
     const getTweets = async () => {
       const response = await axios({
@@ -50,81 +50,65 @@ const Home = () => {
 
   return (
     <>
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-12 col-md-6 min-vh-100 border">
-            <div className="py-3 ">
-              <h5 className="fw-bold">Home</h5>
-            </div>
-            <div className="d-flex  py-3 border-bottom">
+      <div className=" container-home-background">
+        <div
+          className="col-md-5 mx-auto border-start border-end border-secondary"
+          style={{ minHeight: "100vh" }}
+        >
+          <div className="p-3  border-secondary">
+            <h5>Home</h5>
+          </div>
+
+          {/* Formulario */}
+          <div className="d-flex p-3 border-bottom border-secondary">
+            <div className="me-3">
               <img
                 src={
                   isLocalImage
                     ? `http://localhost:3000/img/${userImg}`
                     : userImg
                 }
-                className="rounded-circle me-3"
-                width="50"
-                height="50"
-                alt="Profile"
+                alt="profile"
+                className="rounded-circle"
+                style={{ width: "48px", height: "48px", objectFit: "cover" }}
               />
-              <form className="flex-grow-1" id="tweetForm">
+            </div>
+            <div className="flex-grow-1">
+              <form onSubmit={handleSubmit}>
                 <textarea
-                  id="newTweet"
-                  class="form-control mb-2"
-                  rows="2"
+                  className="form-control mb-2 bg-transparent text-white border-0 no-resize"
                   placeholder="What's happening?"
+                  value={newTweetText}
+                  onChange={(e) => setNewTweetText(e.target.value)}
+                  rows={2}
                 ></textarea>
-                <div className="text-end">
-                  <button
-                    type="submit"
-                    className="btn btn-primary rounded-pill"
-                  >
+                <div className="text-end my-3">
+                  <button className="btn btn-primary rounded-pill px-4">
                     Tweet
                   </button>
                 </div>
               </form>
             </div>
           </div>
+
+          {/* Tweets */}
+          <ul className="p-0 m-0" style={{ listStyleType: "none" }}>
+            {latestTweets.map((tweet) => (
+              <li key={tweet._id}>
+                <OneTweet
+                  text={tweet.text}
+                  firstname={tweet.user.firstname}
+                  lastname={tweet.user.lastname}
+                  username={tweet.user.username}
+                  profileImg={tweet.user.profileImg}
+                  createdAt={tweet.createdAt}
+                  likes={tweet.likes}
+                  tweetId={tweet._id}
+                />
+              </li>
+            ))}
+          </ul>
         </div>
-      </div>
-      <div>
-        <h3>Home</h3>
-        <Link to={`/${username}`}>Profile</Link>
-        <img
-          src={isLocalImage ? `http://localhost:3000/img/${userImg}` : userImg}
-          alt="profile image"
-        />
-
-        <form action="submit" onSubmit={handleSubmit}>
-          <label htmlFor="newTweet"></label>
-          <textarea
-            name="newTweet"
-            id="newTweet"
-            style={{ height: 50 }}
-            placeholder="What's happening?"
-            value={newTweetText}
-            onChange={(e) => setNewTweetText(e.target.value)}
-          ></textarea>
-          <button className="btn btn-primary rounded-pill">Tweet</button>
-        </form>
-
-        <ul className="p-0" style={{ listStyleType: "none" }}>
-          {latestTweets.map((tweet) => (
-            <li key={tweet._id}>
-              <OneTweet
-                text={tweet.text}
-                firstname={tweet.user.firstname}
-                lastname={tweet.user.lastname}
-                username={tweet.user.username}
-                profileImg={tweet.user.profileImg}
-                createdAt={tweet.createdAt}
-                likes={tweet.likes}
-                tweetId={tweet._id}
-              />
-            </li>
-          ))}
-        </ul>
       </div>
     </>
   );
