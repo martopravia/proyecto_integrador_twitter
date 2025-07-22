@@ -1,8 +1,8 @@
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleLikeTweet } from "../redux/tweetsSlice";
-import axios from "axios";
 
-const OneTweet = ({
+const UserTweet = ({
   text,
   firstname,
   lastname,
@@ -12,11 +12,11 @@ const OneTweet = ({
   likes,
   tweetId,
 }) => {
+  const token = useSelector((state) => state.user.token);
   const loggedUser = useSelector((state) => state.user.userId);
   const localImage = profileImg.indexOf("https://");
   const isLiked = likes.includes(loggedUser);
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.user.token);
 
   function handleLike() {
     const LikeTweets = async () => {
@@ -30,6 +30,7 @@ const OneTweet = ({
           userId: loggedUser,
         },
       });
+
       dispatch(
         toggleLikeTweet({
           tweetId,
@@ -70,8 +71,11 @@ const OneTweet = ({
           <span> {likes.length}</span>
         </>
       )}
+      <span>
+        <i className="bi bi-trash3-fill"></i>
+      </span>
     </div>
   );
 };
 
-export default OneTweet;
+export default UserTweet;

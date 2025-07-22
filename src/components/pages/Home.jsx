@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setTweets, deleteTweet } from "../../redux/tweetsSlice";
 import OneTweet from "../OneTweet";
+import { Link, Navigate, useNavigate } from "react-router";
 
 const Home = () => {
   const latestTweets = useSelector((state) => state.tweets);
@@ -11,6 +12,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const [newTweetText, setNewTweetText] = useState("");
   const [submittedTweets, setSubmittedTweets] = useState(0);
+  const username = useSelector((state) => state.user.username);
 
   useEffect(() => {
     const getTweets = async () => {
@@ -49,6 +51,7 @@ const Home = () => {
   return (
     <div>
       <h3>Home</h3>
+      <Link to={`/${username}`}>Profile</Link>
       <img
         src={isLocalImage ? `http://localhost:3000/img/${userImg}` : userImg}
         alt="profile image"

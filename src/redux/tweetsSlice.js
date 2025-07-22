@@ -12,9 +12,9 @@ const tweetsSlice = createSlice({
     },
     toggleLikeTweet: (state, action) => {
       const { tweetId, loggedUser } = action.payload;
-
       const clickedTweet = state.find((tweet) => tweet._id === tweetId);
       let clickedTweetLikes = clickedTweet.likes;
+      console.log(JSON.stringify(clickedTweetLikes));
       const isLiked = clickedTweetLikes.includes(loggedUser);
       isLiked
         ? (clickedTweet.likes = clickedTweetLikes.filter(
