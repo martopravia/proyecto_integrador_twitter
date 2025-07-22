@@ -1,0 +1,45 @@
+.colorFondo {
+  background-color: #0f1822;
+}
+
+.sideBar {
+  font-size: 18px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 200px;
+  padding: 30px;
+
+  margin-left: 200px;
+}
+
+.bWidth {
+  width: 180px;
+}
+
+.botonLogOut {
+  margin-top: 550px;
+}
+.whatsHappening {
+  position: fixed;
+  top: 40px;
+  padding: 20px;
+  width: 350px;
+
+  border: solid black 1px;
+  border-radius: 16px;
+  background-color: #1e2a38;
+}
+
+.category {
+  color: grey;
+  font-size: 12px;
+  margin: 0;
+}
+
+.hashtag {
+  font-weight: bold;
+  font-size: 14px;
+  margin: 2px 0;
+}
