@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleLikeTweet } from "../redux/tweetsSlice";
+import { deleteTweet, toggleLikeTweet } from "../redux/tweetsSlice";
 
 const UserTweet = ({
   text,
@@ -41,6 +41,21 @@ const UserTweet = ({
     LikeTweets();
   }
 
+  function handleDelete() {
+    const dropTweet = async () => {
+      const response = await axios({
+        method: "DELETE",
+        url: `http://localhost:3000/tweets/${tweetId}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      dispatch(deleteTweet(tweetId));
+    };
+    dropTweet();
+  }
+
   return (
     <div>
       <img
@@ -72,7 +87,11 @@ const UserTweet = ({
         </>
       )}
       <span>
-        <i className="bi bi-trash3-fill"></i>
+        <i
+          className="bi bi-trash3-fill"
+          style={{ color: "red" }}
+          onClick={handleDelete}
+        ></i>
       </span>
     </div>
   );

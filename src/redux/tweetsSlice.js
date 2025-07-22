@@ -8,13 +8,13 @@ const tweetsSlice = createSlice({
       return action.payload;
     },
     deleteTweet: (state, action) => {
-      return state.filter((tweet) => tweet._id !== action.payload._id);
+      const tweetId = action.payload;
+      return state.filter((tweet) => tweet._id !== tweetId);
     },
     toggleLikeTweet: (state, action) => {
       const { tweetId, loggedUser } = action.payload;
       const clickedTweet = state.find((tweet) => tweet._id === tweetId);
       let clickedTweetLikes = clickedTweet.likes;
-      console.log(JSON.stringify(clickedTweetLikes));
       const isLiked = clickedTweetLikes.includes(loggedUser);
       isLiked
         ? (clickedTweet.likes = clickedTweetLikes.filter(

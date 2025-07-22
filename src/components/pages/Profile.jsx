@@ -6,7 +6,6 @@ import { setTweets } from "../../redux/tweetsSlice";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
-  //   const [userTweets, setUserTweets] = useState([]);
   const userTweets = useSelector((state) => state.tweets);
   const token = useSelector((state) => state.user.token);
   const username = useSelector((state) => state.user.username);
