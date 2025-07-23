@@ -59,7 +59,6 @@ const Home = () => {
             <h5>Home</h5>
           </div>
 
-          {/* Formulario */}
           <div className="d-flex p-3 border-bottom border-secondary">
             <div className="me-3">
               <img
@@ -91,7 +90,6 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Tweets */}
           <ul className="p-0 m-0" style={{ listStyleType: "none" }}>
             {latestTweets.map((tweet) => (
               <li key={tweet._id}>

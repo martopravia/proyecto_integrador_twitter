@@ -21,10 +21,10 @@ textarea::placeholder {
   opacity: 1;
 }
 
-::placeholder {
+/* ::placeholder {
   color: white !important;
   opacity: 0.6;
-}
+} */
 
 textarea {
   border: none !important;
