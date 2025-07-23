@@ -1,0 +1,16 @@
+.container {
+  min-height: 100vh;
+}
+
+.row {
+  min-height: 75vh;
+}
+
+.welcomeRegisterBanner {
+  background-color: #28384c;
+  color: white;
+}
+
+.loginForm {
+  background-color: white;
+}

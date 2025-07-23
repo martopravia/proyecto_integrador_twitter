@@ -1,0 +1,20 @@
+#root {
+  background-color: #15202b;
+  min-height: 100vh;
+}
+.container {
+  min-height: 100vh;
+}
+
+.row {
+  min-height: 75vh;
+}
+
+.welcomeLoginBanner {
+  background-color: #28384c;
+  color: white;
+}
+
+.loginForm {
+  background-color: white;
+}
