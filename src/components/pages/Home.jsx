@@ -42,6 +42,7 @@ const Home = () => {
           user: userId,
         },
       });
+      console.log(response);
     };
     addTweet();
     setNewTweetText("");

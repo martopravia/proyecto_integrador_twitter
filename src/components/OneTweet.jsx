@@ -13,7 +13,7 @@ const OneTweet = ({
   tweetId,
 }) => {
   const loggedUser = useSelector((state) => state.user.userId);
-  const localImage = profileImg.indexOf("https://");
+  const localImage = profileImg?.indexOf("https://");
   const isLiked = likes.includes(loggedUser);
   const dispatch = useDispatch();
   const token = useSelector((state) => state.user.token);
