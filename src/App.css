@@ -1,3 +1,4 @@
+
 .colorFondo {
   background-color: #0f1822;
 }
@@ -77,4 +78,29 @@
   .bWidth {
     width: 100px;
   }
+
+.container-home-background {
+  background-color: #171f2e;
+  min-height: 100vh;
+  min-width: 100vw;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.username-date-color {
+  color: #67758d !important;
+  opacity: 1;
+}
+
+textarea::placeholder {
+  color: #67758d !important;
+  opacity: 1;
+}
+
+textarea {
+  border: none !important;
+  background-color: #171f2e !important;
+  color: white !important;
+  resize: none;
 }
