@@ -1,9 +1,18 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router";
+import { setLogout } from "../redux/userSlice";
+import { resetTweetsState } from "../redux/tweetsSlice";
 
 const SideBar = () => {
   const username = useSelector((state) => state.user.username);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  function handleLogOut() {
+    navigate("/login");
+    dispatch(setLogout());
+    dispatch(resetTweetsState());
+  }
 
   return (
     <div className="container sideBar">
@@ -27,14 +36,20 @@ const SideBar = () => {
           </Link>
         </li>
       </ul>
-      <button className="btn btn-primary rounded-pill mt-4 ms-4 bWidth">
-        <span className="d-none d-lg-inline">Tweet</span>
-        <span className="d-inline d-lg-none">
-          <i className="bi bi-twitter-x"></i>
-        </span>
-      </button>
+      <Link to={"/"}>
+        <button className="btn btn-primary rounded-pill mt-4 ms-4 bWidth">
+          <span className="d-none d-lg-inline">Tweet</span>
+          <span className="d-inline d-lg-none">
+            <i className="bi bi-twitter-x"></i>
+          </span>
+        </button>
+      </Link>
+
       <div className="botonLogOut">
-        <button className="btn btn-danger rounded-pill ms-4 bWidth">
+        <button
+          className="btn btn-danger rounded-pill ms-4 bWidth"
+          onClick={handleLogOut}
+        >
           <span className="d-none d-lg-inline">Log Out</span>
           <span className="d-inline d-lg-none">
             <i className="bi bi-box-arrow-left"></i>

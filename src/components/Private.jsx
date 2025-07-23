@@ -1,16 +1,10 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router";
 import SideBar from "./SideBar";
 import News from "./News";
 
 const Private = () => {
-  let token = "";
-  try {
-    token = useSelector((state) => state.user.token);
-  } catch (error) {
-    console.log(error);
-  }
+  const token = useSelector((state) => state.user?.token);
 
   if (!token) {
     return <Navigate to="login" />;

@@ -1,0 +1,18 @@
+.row1 {
+  background-image: url("https://thumbs.dreamstime.com/b/panoramic-view-spring-landscape-blooming-flowers-meadow-358218766.jpg?w=2048");
+  object-fit: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  height: 200px;
+  width: 100%;
+  margin-bottom: 7rem;
+}
+
+.profileImage {
+  border: solid white 5px;
+  object-fit: cover;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  bottom: -80px;
+}

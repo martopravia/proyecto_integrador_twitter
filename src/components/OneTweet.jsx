@@ -42,7 +42,7 @@ const OneTweet = ({
 
   return (
     <div
-      className="d-flex p-3 border-bottom"
+      className="d-flex p-3 border border-secondary"
       style={{ backgroundColor: "#171f2e", color: "white" }}
     >
       <div className="me-3">

@@ -22,8 +22,10 @@ const tweetsSlice = createSlice({
           ))
         : clickedTweetLikes.push(loggedUser);
     },
+    resetTweetsState: () => [],
   },
 });
 
-export const { setTweets, deleteTweet, toggleLikeTweet } = tweetsSlice.actions;
+export const { setTweets, deleteTweet, toggleLikeTweet, resetTweetsState } =
+  tweetsSlice.actions;
 export default tweetsSlice.reducer;
