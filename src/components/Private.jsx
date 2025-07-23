@@ -16,15 +16,15 @@ const Private = () => {
     return <Navigate to="login" />;
   }
   return (
-    <div>
-      <div className="row colorFondo" style={{ color: "white" }}>
-        <div className="col-2 col-md-2 col-lg-3">
+    <div className="container">
+      <div className="row" style={{ color: "white" }}>
+        <div className="col-sm-2 col-md-2 col-lg-3">
           <SideBar />
         </div>
-        <div className="col-8 col-md-8 col-lg-6">
+        <div className="col-sm-10 col-md-8 col-lg-6">
           <Outlet />
         </div>
-        <div className="col-2 col-md-2 col-lg-3">
+        <div className="d-sm-none d-md-flex col-md-2 col-lg-3">
           <News />
         </div>
       </div>

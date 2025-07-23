@@ -50,9 +50,9 @@ const Home = () => {
 
   return (
     <>
-      <div className=" container-home-background">
+      <div className="container-home-background">
         <div
-          className="col-md-5 mx-auto border-start border-end border-secondary"
+          className="mx-auto border-start border-end border-secondary"
           style={{ minHeight: "100vh" }}
         >
           <div className="p-3  border-secondary">
