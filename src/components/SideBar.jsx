@@ -14,7 +14,7 @@ const SideBar = () => {
         <li className="mt-4">
           <i className="bi bi-house-fill me-3"></i>
           <Link to="/" style={{ color: "white", textDecoration: "none" }}>
-            LLAMAR A LUCHO EN OTRO MOMENTO Home
+            Home
           </Link>
         </li>
         <li className="mt-4 ">
