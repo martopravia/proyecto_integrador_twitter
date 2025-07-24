@@ -16,7 +16,7 @@ const Home = () => {
     const getTweets = async () => {
       const response = await axios({
         method: "GET",
-        url: "http://localhost:3000/tweets",
+        url: `${import.meta.env.VITE_API_URL}/tweets`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -31,7 +31,7 @@ const Home = () => {
     const addTweet = async () => {
       const response = await axios({
         method: "POST",
-        url: "http://localhost:3000/tweets",
+        url: `${import.meta.env.VITE_API_URL}/tweets`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -64,7 +64,7 @@ const Home = () => {
                 <img
                   src={
                     isLocalImage
-                      ? `http://localhost:3000/img/${userImg}`
+                      ? `${import.meta.env.VITE_API_URL}/img/${userImg}`
                       : userImg
                   }
                   alt="profile"

@@ -23,7 +23,7 @@ const UserTweet = ({
     const LikeTweets = async () => {
       const response = await axios({
         method: "PATCH",
-        url: `http://localhost:3000/tweets/${tweetId}/likes`,
+        url: `${import.meta.env.VITE_API_URL}/tweets/${tweetId}/likes`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -46,7 +46,7 @@ const UserTweet = ({
     const dropTweet = async () => {
       const response = await axios({
         method: "DELETE",
-        url: `http://localhost:3000/tweets/${tweetId}`,
+        url: `${import.meta.env.VITE_API_URL}/tweets/${tweetId}`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -67,7 +67,7 @@ const UserTweet = ({
           src={
             localImage !== -1
               ? profileImg
-              : `http://localhost:3000/img/${profileImg}`
+              : `${import.meta.env.VITE_API_URL}/img/${profileImg}`
           }
           alt="profile image"
           className="rounded-circle"

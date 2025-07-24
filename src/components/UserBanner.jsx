@@ -19,7 +19,7 @@ const UserBanner = ({
           className="p-0 rounded-circle profileImage"
           src={
             isLocalImage
-              ? `http://localhost:3000/img/${profileImg}`
+              ? `${import.meta.env.VITE_API_URL}/img/${profileImg}`
               : profileImg
           }
           alt="profile image"

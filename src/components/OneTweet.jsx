@@ -22,7 +22,7 @@ const OneTweet = ({
     const LikeTweets = async () => {
       const response = await axios({
         method: "PATCH",
-        url: `http://localhost:3000/tweets/${tweetId}/likes`,
+        url: `${import.meta.env.VITE_API_URL}/tweets/${tweetId}/likes`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -50,7 +50,7 @@ const OneTweet = ({
           src={
             localImage !== -1
               ? profileImg
-              : `http://localhost:3000/img/${profileImg}`
+              : `${import.meta.env.VITE_API_URL}/img/${profileImg}`
           }
           alt="profile"
           className="rounded-circle"

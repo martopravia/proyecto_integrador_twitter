@@ -15,7 +15,7 @@ const Profile = () => {
     const getUser = async () => {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:3000/users/${username}`,
+        url: `${import.meta.env.VITE_API_URL}/users/${username}`,
         headers: {
           Authorization: `Bearer ${token}`,
         },

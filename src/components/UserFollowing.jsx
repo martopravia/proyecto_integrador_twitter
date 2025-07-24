@@ -12,7 +12,7 @@ const UserFollowing = ({ firstname, lastname, username, profileImg }) => {
           src={
             localImage !== -1
               ? profileImg
-              : `http://localhost:3000/img/${profileImg}`
+              : `${import.meta.env.VITE_API_URL}/img/${profileImg}`
           }
           alt="profile image"
           className="rounded-circle"

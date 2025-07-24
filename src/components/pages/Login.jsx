@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setLogin } from "../../redux/userSlice";
 import { Link, useNavigate } from "react-router";
 import "./Login.css";
@@ -15,7 +15,7 @@ const Login = () => {
     e.preventDefault();
     const response = await axios({
       method: "POST",
-      url: "http://localhost:3000/tokens",
+      url: `${import.meta.env.VITE_API_URL}/tokens`,
       data: { username, password },
     });
     const { data } = response;
