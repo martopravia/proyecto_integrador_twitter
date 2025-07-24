@@ -16,7 +16,7 @@ const UserTweet = ({
   const token = useSelector((state) => state.user.token);
   const loggedUser = useSelector((state) => state.user.userId);
   const localImage = profileImg.indexOf("https://");
-  const isLiked = likes.includes(loggedUser);
+  const isLiked = (likes || []).includes(loggedUser);
   const dispatch = useDispatch();
 
   function handleLike() {
@@ -94,12 +94,12 @@ const UserTweet = ({
                 style={{ color: "deeppink", cursor: "pointer" }}
                 onClick={handleLike}
               ></i>
-              <span style={{ color: "deeppink" }}> {likes.length}</span>
+              <span style={{ color: "deeppink" }}> {likes?.length || 0}</span>
             </div>
           ) : (
             <div>
               <i className="bi bi-heart" onClick={handleLike}></i>
-              <span> {likes.length}</span>
+              <span> {likes?.length || 0}</span>
             </div>
           )}
           <div>
