@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import "./UserBanner.css";
 
 const UserBanner = ({
@@ -32,60 +32,46 @@ const UserBanner = ({
             {firstname} {lastname}
           </h3>
           <div>
-            <span className="ms-3" style={{ whiteSpace: "nowrap" }}>
-              {following.length}{" "}
-              <span className="text-secondary">Following</span>
-            </span>
-            <span className="ms-3" style={{ whiteSpace: "nowrap" }}>
-              {followers.length}{" "}
-              <span className="text-secondary">Followers</span>
-            </span>
+            <Link
+              to={`/${username}/following`}
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <span className="ms-3" style={{ whiteSpace: "nowrap" }}>
+                {following.length}{" "}
+                <span className="text-secondary">Following</span>
+              </span>
+            </Link>
+            <Link
+              to={`/${username}/followers`}
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <span className="ms-3" style={{ whiteSpace: "nowrap" }}>
+                {followers.length}{" "}
+                <span className="text-secondary">Followers</span>
+              </span>
+            </Link>
           </div>
         </div>
         <p className="text-secondary">@{username}</p>
         <p className="mb-5">{description}</p>
 
         <ul
-          className="p-0 d-flex justify-content-between"
+          className="p-0 d-flex justify-content-between m-0"
           style={{ listStyleType: "none" }}
         >
           <li>
             <NavLink
               className={({ isActive }) =>
                 `nav-link  fw-bold fs-5 ${
-                  isActive ? "border-bottom border-primary" : "text-light"
+                  isActive
+                    ? "border-bottom border-primary border-3"
+                    : "text-light"
                 }`
               }
               aria-current="page"
-              to="/peliculas"
+              to={`/${username}`}
             >
               Tweets
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className={({ isActive }) =>
-                `nav-link  fw-bold fs-5 ${
-                  isActive ? "border-bottom border-primary" : "text-light"
-                }`
-              }
-              aria-current="page"
-              to="/peliculas"
-            >
-              Followers
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className={({ isActive }) =>
-                `nav-link  fw-bold fs-5 ${
-                  isActive ? "border-bottom border-primary" : "text-light"
-                }`
-              }
-              aria-current="page"
-              to="/peliculas"
-            >
-              Following
             </NavLink>
           </li>
         </ul>

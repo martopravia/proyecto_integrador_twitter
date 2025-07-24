@@ -5,6 +5,8 @@ import Private from "./components/Private";
 import Register from "./components/pages/Register";
 import Home from "./components/pages/Home";
 import Profile from "./components/pages/Profile";
+import Following from "./components/pages/Following";
+import Followers from "./components/pages/Followers";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path="/" element={<Private />}>
           <Route path="/" element={<Home />} />
           <Route path="/:username" element={<Profile />} />
+          <Route path="/:username/following" element={<Following />} />
+          <Route path="/:username/followers" element={<Followers />} />
         </Route>
       </Routes>
     </>

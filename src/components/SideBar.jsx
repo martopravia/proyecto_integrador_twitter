@@ -16,8 +16,8 @@ const SideBar = () => {
 
   return (
     <div className="container sideBar">
-      <ul style={{ listStyleType: "none" }}>
-        <li className="mt-4 me-5">
+      <ul style={{ listStyleType: "none", paddingTop: "20px" }}>
+        <li className="mt-3 me-5">
           <i className="bi bi-twitter-x"></i>
         </li>
         <li className="mt-4">
