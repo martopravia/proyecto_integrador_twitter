@@ -44,7 +44,7 @@ const Home = () => {
     };
     addTweet();
     setNewTweetText("");
-    setSubmittedTweets(submittedTweets + 1);
+    setSubmittedTweets(submittedTweets + 1); //TODO: dispatch addTweet con push, agregarlo a la lista de twt del store
   }
 
   return (
