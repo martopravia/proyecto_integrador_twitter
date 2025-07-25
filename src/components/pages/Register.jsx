@@ -27,7 +27,7 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/users/`,
+        `${import.meta.env.VITE_API_URL}/users`,
         formData
       );
       console.log(response.data);
