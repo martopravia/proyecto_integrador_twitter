@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setTweets } from "../../redux/tweetsSlice";
+import { setTweets, addNewTweet } from "../../redux/tweetsSlice";
 import OneTweet from "../OneTweet";
 
 const Home = () => {
@@ -10,7 +10,7 @@ const Home = () => {
   const isLocalImage = !userImg.includes("http");
   const dispatch = useDispatch();
   const [newTweetText, setNewTweetText] = useState("");
-  const [submittedTweets, setSubmittedTweets] = useState(0);
+  // const [submittedTweets, ] = useState(0);
 
   useEffect(() => {
     const getTweets = async () => {
@@ -24,7 +24,7 @@ const Home = () => {
       dispatch(setTweets(response.data));
     };
     getTweets();
-  }, [submittedTweets]);
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -41,10 +41,11 @@ const Home = () => {
         },
       });
       console.log(response);
+      dispatch(addNewTweet(response.data));
     };
     addTweet();
     setNewTweetText("");
-    setSubmittedTweets(submittedTweets + 1); //TODO: dispatch addTweet con push, agregarlo a la lista de twt del store
+    // setSubmittedTweets(submittedTweets + 1); //TODO: dispatch addTweet con push, agregarlo a la lista de twt del store
   }
 
   return (
