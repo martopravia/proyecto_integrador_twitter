@@ -70,11 +70,12 @@ const Following = () => {
           {user.following.map((follow, index) => (
             <li key={follow._id || follow.id || index}>
               <UserFollowing
-                firstname={follow.firstname}
-                lastname={follow.lastname}
-                username={follow.username}
-                profileImg={follow.profileImg}
-                followerUserId={follow._id}
+                // firstname={follow.firstname}
+                // lastname={follow.lastname}
+                // username={follow.username}
+                // profileImg={follow.profileImg}
+                // followerUserId={follow._id}
+                userFollowing={follow}
               />
             </li>
           ))}

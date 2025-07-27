@@ -8,6 +8,7 @@ import UserFollower from "../UserFollower";
 const Followers = () => {
   // const [user, setUser] = useState(null);
   const user = useSelector((state) => state.user);
+  console.log("el user.followers es :", user.followers);
   // const { username } = useSelector((state) => state.user); // saco token
   if (!user) {
     return <div>Loading...</div>;
@@ -90,12 +91,13 @@ const Followers = () => {
           {user.followers.map((follow) => (
             <li key={follow._id}>
               <UserFollower
-                firstname={follow.firstname}
-                lastname={follow.lastname}
-                username={follow.username}
-                profileImg={follow.profileImg}
-                followerId={follow._id} // estaba sin el guion bajo
-                // loggedUserFollowingList={user.following}
+                // firstname={follow.firstname}
+                // lastname={follow.lastname}
+                // username={follow.username}
+                // profileImg={follow.profileImg}
+                // followerId={follow._id}
+                loggedUserFollowingList={user.following}
+                userToFollow={follow}
               />
             </li>
           ))}

@@ -11,7 +11,10 @@ const userSlice = createSlice({
       return null;
     },
     toggleFollowUser: (state, action) => {
-      const userToFollowId = action.payload;
+      const userToFollow = action.payload; //trae el id
+      console.log(userToFollow);
+      const userToFollowId = userToFollow._id;
+      console.log("el userTOFollowId es: ", userToFollowId);
 
       const alreadyFollowing = state.following.some(
         (user) => String(user._id) === String(userToFollowId)
@@ -21,6 +24,10 @@ const userSlice = createSlice({
         state.following = state.following.filter(
           (user) => String(user._id) !== String(userToFollowId)
         );
+      } else {
+        console.log("Dentro del else");
+        state.following.push(userToFollow);
+        // state.following = [...state.following, userToFollowId];
       }
     },
     updateFollowing: (state, action) => {

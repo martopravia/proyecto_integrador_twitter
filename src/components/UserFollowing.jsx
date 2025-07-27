@@ -3,29 +3,25 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleFollowUser } from "../redux/userSlice";
 
-const UserFollowing = ({
-  firstname,
-  lastname,
-  username,
-  profileImg,
-  followerUserId,
-}) => {
-  const localImage = profileImg?.indexOf("https://");
+const UserFollowing = ({ userFollowing }) => {
+  const localImage = userFollowing.profileImg?.indexOf("https://");
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.user);
 
-  const handleUnfollow = async (userToFollowId) => {
+  const handleUnfollow = async () => {
     try {
       const response = await axios({
         method: "PATCH",
-        url: `${import.meta.env.VITE_API_URL}/users/follow/${userToFollowId}`,
+        url: `${import.meta.env.VITE_API_URL}/users/follow/${
+          userFollowing._id
+        }`,
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
-        data: { userId: followerUserId },
+        data: { userId: userFollowing._id },
       });
-      dispatch(toggleFollowUser(userToFollowId));
+      dispatch(toggleFollowUser(userFollowing));
 
       console.log("La respuesta del back es: ", response.data);
     } catch (error) {
@@ -41,8 +37,10 @@ const UserFollowing = ({
         <img
           src={
             localImage !== -1
-              ? profileImg
-              : `${import.meta.env.VITE_API_URL}/img/${profileImg}`
+              ? userFollowing.profileImg
+              : `${import.meta.env.VITE_API_URL}/img/${
+                  userFollowing.profileImg
+                }`
           }
           alt="profile image"
           className="rounded-circle"
@@ -53,13 +51,15 @@ const UserFollowing = ({
         <div className="d-flex justify-content-between">
           <div className="d-flex flex-column">
             <strong>
-              {firstname} {lastname}
+              {userFollowing.firstname} {userFollowing.lastname}
             </strong>{" "}
-            <span className="username-date-color">@{username}</span>
+            <span className="username-date-color">
+              @{userFollowing.username}
+            </span>
           </div>
           <button
-            className="btn btn-danger btn-sm rounded-pill text-white"
-            onClick={() => handleUnfollow(followerUserId)}
+            className="btn btn-danger btn-sm px-3 rounded-pill text-white"
+            onClick={() => handleUnfollow()}
           >
             Unfollow
           </button>
