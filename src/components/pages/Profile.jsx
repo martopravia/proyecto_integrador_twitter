@@ -1,13 +1,12 @@
 import axios from "axios";
 import UserTweet from "../UserTweet";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setTweets } from "../../redux/tweetsSlice";
 import UserBanner from "../UserBanner";
 
 const Profile = () => {
-  const [user, setUser] = useState(null);
-  const { token, username } = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user);
   const userTweets = useSelector((state) => state.tweets);
   const dispatch = useDispatch();
 
@@ -15,16 +14,13 @@ const Profile = () => {
     const getUser = async () => {
       const response = await axios({
         method: "GET",
-        url: `${import.meta.env.VITE_API_URL}/users/${username}`,
+        url: `${import.meta.env.VITE_API_URL}/users/${user.username}`,
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${user.token}`,
         },
       });
-
-      setUser(response.data);
-      dispatch(setTweets(response.data.tweets));
+      dispatch(setTweets(response.data.tweets.reverse()));
     };
-
     getUser();
   }, []);
 

@@ -23,9 +23,9 @@ const Login = () => {
       dispatch(
         setLogin({
           token: data.token,
-          username,
           userId: data.userId,
           userImg: data.userImg,
+          ...data.user,
         })
       );
       navigate("/");

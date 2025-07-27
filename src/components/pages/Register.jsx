@@ -30,7 +30,7 @@ const Register = () => {
         `${import.meta.env.VITE_API_URL}/users`,
         formData
       );
-      console.log(response.data);
+      console.log("La info recibida es", response.data);
       navigate("/login");
     } catch (error) {
       console.error("Hubo un error fatal: ", error);

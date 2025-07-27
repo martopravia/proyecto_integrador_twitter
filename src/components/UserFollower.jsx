@@ -1,15 +1,8 @@
 import React from "react";
 
-const UserFollower = ({
-  firstname,
-  lastname,
-  username,
-  profileImg,
-  // followerId,
-  // loggedUserFollowingList
-}) => {
+const UserFollower = ({ firstname, lastname, username, profileImg }) => {
   const localImage = profileImg.indexOf("https://");
-  // const isFollowed = loggedUserFollowingList?.find(followerId);
+
   return (
     <div
       className="d-flex p-3"

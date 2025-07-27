@@ -1,7 +1,37 @@
+import axios from "axios";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleFollowUser } from "../redux/userSlice";
 
-const UserFollowing = ({ firstname, lastname, username, profileImg }) => {
-  const localImage = profileImg.indexOf("https://");
+const UserFollowing = ({
+  firstname,
+  lastname,
+  username,
+  profileImg,
+  followerUserId,
+}) => {
+  const localImage = profileImg?.indexOf("https://");
+  const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.user);
+
+  const handleUnfollow = async (userToFollowId) => {
+    try {
+      const response = await axios({
+        method: "PATCH",
+        url: `${import.meta.env.VITE_API_URL}/users/follow/${userToFollowId}`,
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+        data: { userId: followerUserId },
+      });
+      dispatch(toggleFollowUser(userToFollowId));
+
+      console.log("La respuesta del back es: ", response.data);
+    } catch (error) {
+      console.error("Error al hacer unfollow:", error);
+    }
+  };
   return (
     <div
       className="d-flex p-3"
@@ -27,7 +57,10 @@ const UserFollowing = ({ firstname, lastname, username, profileImg }) => {
             </strong>{" "}
             <span className="username-date-color">@{username}</span>
           </div>
-          <button className="btn btn-danger btn-sm rounded-pill text-white">
+          <button
+            className="btn btn-danger btn-sm rounded-pill text-white"
+            onClick={() => handleUnfollow(followerUserId)}
+          >
             Unfollow
           </button>
         </div>

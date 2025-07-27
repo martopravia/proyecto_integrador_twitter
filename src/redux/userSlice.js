@@ -10,8 +10,25 @@ const userSlice = createSlice({
     setLogout: () => {
       return null;
     },
+    toggleFollowUser: (state, action) => {
+      const userToFollowId = action.payload;
+
+      const alreadyFollowing = state.following.some(
+        (user) => String(user._id) === String(userToFollowId)
+      );
+      console.log(alreadyFollowing);
+      if (alreadyFollowing) {
+        state.following = state.following.filter(
+          (user) => String(user._id) !== String(userToFollowId)
+        );
+      }
+    },
+    updateFollowing: (state, action) => {
+      state.following = action.payload; //
+    },
   },
 });
 
-export const { setLogin, setLogout } = userSlice.actions;
+export const { setLogin, setLogout, toggleFollowUser, updateFollowing } =
+  userSlice.actions;
 export default userSlice.reducer;

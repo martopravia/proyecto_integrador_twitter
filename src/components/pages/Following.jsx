@@ -1,29 +1,14 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router";
 import "./Follow.css";
 import UserFollowing from "../UserFollowing";
 
 const Following = () => {
-  const [user, setUser] = useState(null);
-  const { token, username } = useSelector((state) => state.user);
-
-  useEffect(() => {
-    const getUser = async () => {
-      const response = await axios({
-        method: "GET",
-        url: `${import.meta.env.VITE_API_URL}/users/${username}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      setUser(response.data);
-    };
-
-    getUser();
-  }, []);
+  const user = useSelector((state) => state.user);
+  console.log("el user.following es :", user.following);
+  if (!user) {
+    return <div>Loading...</div>;
+  }
 
   return (
     user && (
@@ -32,7 +17,7 @@ const Following = () => {
           <div className="d-flex followBanner">
             <div className="me-2 mt-2">
               <Link
-                to={`/${username}`}
+                to={`/${user.username}`}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
                 <i className="bi bi-arrow-left"></i>
@@ -59,7 +44,7 @@ const Following = () => {
                   }`
                 }
                 aria-current="page"
-                to={`/${username}/followers`}
+                to={`/${user.username}/followers`}
               >
                 Followers
               </NavLink>
@@ -74,7 +59,7 @@ const Following = () => {
                   }`
                 }
                 aria-current="page"
-                to={`/${username}/following`}
+                to={`/${user.username}/following`}
               >
                 Following
               </NavLink>
@@ -82,13 +67,14 @@ const Following = () => {
           </ul>
         </div>
         <ul className="p-0 border-secondary" style={{ listStyleType: "none" }}>
-          {user.following.map((follow) => (
-            <li key={follow._id}>
+          {user.following.map((follow, index) => (
+            <li key={follow._id || follow.id || index}>
               <UserFollowing
                 firstname={follow.firstname}
                 lastname={follow.lastname}
                 username={follow.username}
                 profileImg={follow.profileImg}
+                followerUserId={follow._id}
               />
             </li>
           ))}

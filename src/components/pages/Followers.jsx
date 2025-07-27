@@ -1,30 +1,34 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+// import axios from "axios";
+// import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router";
 import "./Follow.css";
 import UserFollower from "../UserFollower";
 
 const Followers = () => {
-  const [user, setUser] = useState(null);
-  const { token, username } = useSelector((state) => state.user);
+  // const [user, setUser] = useState(null);
+  const user = useSelector((state) => state.user);
+  // const { username } = useSelector((state) => state.user); // saco token
+  if (!user) {
+    return <div>Loading...</div>;
+  }
 
-  useEffect(() => {
-    const getUser = async () => {
-      const response = await axios({
-        method: "GET",
-        url: `${import.meta.env.VITE_API_URL}/users/${username}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+  // useEffect(() => {
+  //   const getUser = async () => {
+  //     const response = await axios({
+  //       method: "GET",
+  //       url: `${import.meta.env.VITE_API_URL}/users/${username}`,
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
 
-      setUser(response.data);
-      //   console.log(user.following);
-    };
+  //     setUser(response.data);
+  //     //   console.log(user.following);
+  //   };
 
-    getUser();
-  }, []);
+  //   getUser();
+  // }, []);
 
   return (
     user && (
@@ -33,7 +37,7 @@ const Followers = () => {
           <div className="d-flex followBanner">
             <div className="me-2 mt-2">
               <Link
-                to={`/${username}`}
+                to={`/${user.username}`}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
                 <i className="bi bi-arrow-left"></i>
@@ -60,7 +64,7 @@ const Followers = () => {
                   }`
                 }
                 aria-current="page"
-                to={`/${username}/followers`}
+                to={`/${user.username}/followers`}
               >
                 Followers
               </NavLink>
@@ -75,7 +79,7 @@ const Followers = () => {
                   }`
                 }
                 aria-current="page"
-                to={`/${username}/following`}
+                to={`/${user.username}/following`}
               >
                 Following
               </NavLink>
@@ -90,7 +94,7 @@ const Followers = () => {
                 lastname={follow.lastname}
                 username={follow.username}
                 profileImg={follow.profileImg}
-                followerId={follow.id}
+                followerId={follow._id} // estaba sin el guion bajo
                 // loggedUserFollowingList={user.following}
               />
             </li>
