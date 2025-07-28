@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { setLogin } from "../../redux/userSlice";
 import { Link, useNavigate } from "react-router";
 import "./Login.css";
+import { Bounce, ToastContainer, toast } from "react-toastify";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -13,24 +14,32 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const response = await axios({
-      method: "POST",
-      url: `${import.meta.env.VITE_API_URL}/tokens`,
-      data: { username, password },
-    });
-    const { data } = response;
-    if (data.token) {
-      dispatch(
-        setLogin({
-          token: data.token,
-          userId: data.userId,
-          userImg: data.userImg,
-          ...data.user,
-        })
-      );
-      navigate("/");
+    let response = null;
+    try {
+      response = await axios({
+        method: "POST",
+        url: `${import.meta.env.VITE_API_URL}/tokens`,
+        data: { username, password },
+      });
+      const { data } = response;
+      if (data.token) {
+        dispatch(
+          setLogin({
+            token: data.token,
+            userId: data.userId,
+            userImg: data.userImg,
+            ...data.user,
+          })
+        );
+
+        navigate("/");
+      }
+    } catch (error) {
+      toast.error(`${error.response.data.message}`);
+      console.log("error: ", error);
     }
   };
+
   return (
     <div className="container d-flex align-items-center justify-content-center">
       <div className="row w-100 ">

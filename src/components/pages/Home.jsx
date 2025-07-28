@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setTweets, addNewTweet } from "../../redux/tweetsSlice";
 import OneTweet from "../OneTweet";
+import { Bounce, ToastContainer, toast } from "react-toastify";
 
 const Home = () => {
   const latestTweets = useSelector((state) => state.tweets);
@@ -21,6 +22,7 @@ const Home = () => {
           Authorization: `Bearer ${token}`,
         },
       });
+      toast.success("Login successfull");
       dispatch(setTweets(response.data));
     };
     getTweets();
@@ -28,6 +30,7 @@ const Home = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
+
     const addTweet = async () => {
       const response = await axios({
         method: "POST",
@@ -40,6 +43,7 @@ const Home = () => {
           user: userId,
         },
       });
+
       console.log(response);
       dispatch(addNewTweet(response.data));
     };

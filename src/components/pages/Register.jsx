@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import "./Register.css";
+import { Bounce, ToastContainer, toast } from "react-toastify";
 
 const Register = () => {
   const [firstname, setFirstName] = useState("");
@@ -14,6 +15,7 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    // let response = null;
     console.log(firstname, lastname, email, username, profileImg, password);
     const formData = new FormData();
     formData.append("firstname", firstname);
@@ -24,15 +26,22 @@ const Register = () => {
     // formData.append("description", "");
 
     formData.append("image", profileImg);
-
+    // const notify = () => toast.success("Usuario registrado con éxito!");
+    let response = null;
     try {
-      const response = await axios.post(
+      response = await axios.post(
         `${import.meta.env.VITE_API_URL}/users`,
         formData
       );
       console.log("La info recibida es", response.data);
-      navigate("/login");
+      toast.success("Account created successfully");
+
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
     } catch (error) {
+      toast.error(`${error.response.data.msg}`);
+
       console.error("Hubo un error fatal: ", error);
     }
   };

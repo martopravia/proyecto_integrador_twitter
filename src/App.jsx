@@ -7,6 +7,7 @@ import Home from "./components/pages/Home";
 import Profile from "./components/pages/Profile";
 import Following from "./components/pages/Following";
 import Followers from "./components/pages/Followers";
+import { Bounce, ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -21,6 +22,19 @@ function App() {
           <Route path="/:username/followers" element={<Followers />} />
         </Route>
       </Routes>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
     </>
   );
 }
