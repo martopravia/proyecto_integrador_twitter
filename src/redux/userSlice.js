@@ -38,4 +38,5 @@ const userSlice = createSlice({
 
 export const { setLogin, setLogout, toggleFollowUser, updateFollowing } =
   userSlice.actions;
+
 export default userSlice.reducer;

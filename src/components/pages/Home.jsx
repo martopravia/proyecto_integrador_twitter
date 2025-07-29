@@ -3,15 +3,16 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setTweets, addNewTweet } from "../../redux/tweetsSlice";
 import OneTweet from "../OneTweet";
-import { Bounce, ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
+import { setLoginToastShown } from "../../redux/loginToastSlice";
 
 const Home = () => {
   const latestTweets = useSelector((state) => state.tweets);
   const { token, userId, userImg } = useSelector((state) => state.user);
+  const toastShown = useSelector((state) => state.toast);
   const isLocalImage = !userImg.includes("http");
   const dispatch = useDispatch();
   const [newTweetText, setNewTweetText] = useState("");
-  // const [submittedTweets, ] = useState(0);
 
   useEffect(() => {
     const getTweets = async () => {
@@ -22,11 +23,15 @@ const Home = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      toast.success("Login successfull");
+      if (!toastShown) {
+        toast.success("Login successfull");
+
+        dispatch(setLoginToastShown());
+      }
       dispatch(setTweets(response.data));
     };
     getTweets();
-  }, []);
+  }, [dispatch, token, toastShown]);
 
   function handleSubmit(e) {
     e.preventDefault();

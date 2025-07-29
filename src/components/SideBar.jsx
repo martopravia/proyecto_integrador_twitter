@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
 import { setLogout } from "../redux/userSlice";
 import { resetTweetsState } from "../redux/tweetsSlice";
+import { toast } from "react-toastify";
 
 const SideBar = () => {
   const username = useSelector((state) => state.user.username);
@@ -11,6 +12,7 @@ const SideBar = () => {
   function handleLogOut() {
     navigate("/login");
     dispatch(setLogout());
+    toast.dismiss();
     dispatch(resetTweetsState());
   }
 
